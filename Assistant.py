@@ -46,7 +46,9 @@ st.title("AI by PARTH")
 @st.cache_resource
 
 def generate_response(userinput):
-     res = Assistant.invoke(userinput)
+     bot_response = Assistant.invoke(userinput)
+     return bot_response
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
