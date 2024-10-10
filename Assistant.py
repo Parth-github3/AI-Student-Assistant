@@ -48,9 +48,8 @@ st.title("AI by PARTH")
 def generate_response(userinput):
     return base_summary_chain.invoke(userinput)
      
-
 if "messages" not in st.session_state:
-        st.session_state.messages = []
+    st.session_state.messages = []
 
 # getting User input
 userinput = st.chat_input("Say something")
@@ -64,8 +63,6 @@ if userinput:
     bot_response = generate_response(userinput)
     st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
 
 # Display chat history
 for message in st.session_state.messages:
