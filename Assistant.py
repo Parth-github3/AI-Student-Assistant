@@ -20,7 +20,12 @@ base_summary_chain = (
     | StrOutputParser()
     #|{"base_response": RunnablePassthrough()}
 )
-
+basechain = (
+    ChatPromptTemplate.from_template("You are a proficient gen-ai developer and you are helping students to make gen-ai projects using langchain. Provide answers for the questions {questions} asked by students with explapaination.")
+    | llama
+    | StrOutputParser()
+    #|{"base_response": RunnablePassthrough()}
+)
     
     
 
@@ -44,7 +49,7 @@ st.title("AI by PARTH")
 @st.cache_resource
 
 def generate_response(userinput):
-    return base_summary_chain.invoke(userinput)
+    return basechain.invoke(userinput)
      
 if "messages" not in st.session_state:
     st.session_state.messages = []
