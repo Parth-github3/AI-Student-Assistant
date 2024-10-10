@@ -22,11 +22,7 @@ Provide answers for the following list of questions with explapaination and also
     | StrOutputParser()
     |{"base_response": RunnablePassthrough()}
     )
-    res =base_summary_chain.invoke("""1. Differentiate Fuzzy logic and Crisp logic. Explain architecture of fuzzy logic system. 
-2. Explain various steps of Natural Language Processing.
-3. What is state space representation? Explain with suitable example.
-4. What is planning? Discuss Nonlinear Planning using Constraint Posting with example.
-5. Explain various steps of Natural Language Processing.""")
+    res =base_summary_chain.invoke(prompt)
     return res
 
 
