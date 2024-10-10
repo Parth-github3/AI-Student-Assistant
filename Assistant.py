@@ -21,7 +21,7 @@ base_summary_chain = (
     #|{"base_response": RunnablePassthrough()}
 )
 basechain = (
-    ChatPromptTemplate.from_template("You are a proficient gen-ai developer and you are helping students to make gen-ai projects using langchain. Provide answers for the questions {questions} asked by students with explapaination.")
+    ChatPromptTemplate.from_template("You are a proficient gen-ai developer who makes gen-ai projects using langchain. Provide a project code for the given project requirements {requirements} by the client.")
     | llama
     | StrOutputParser()
     #|{"base_response": RunnablePassthrough()}
