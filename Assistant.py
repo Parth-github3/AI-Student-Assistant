@@ -50,10 +50,11 @@ with st.expander("About app..."):
 # Load Groq compiled LLaMA model (replace with your actual model path)
 @st.cache_resource
 
-
 def yoo():
-    if "messages" not in st.session_state:
-            st.session_state.messages = []
+     var= ""
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
 userinput = st.chat_input("Say something")
 with st.chat_message("user"):
