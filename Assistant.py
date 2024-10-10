@@ -50,7 +50,7 @@ def generate_response(userinput):
      return bot_response
 
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+        st.session_state.messages = []
 
 # getting User input
 userinput = st.chat_input("Say something")
