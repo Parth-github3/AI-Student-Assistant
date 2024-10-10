@@ -16,7 +16,7 @@ llama = ChatGroq(
 def Assistant():
     base_summary_chain = (
     ChatPromptTemplate.from_template("""
-Provide answers for the following list of questions with explapaination and also track which questions are repeated:{topic}
+Provide answers for the following list of questions with explapaination and also track which questions are repeated.
 """)
     | llama
     | StrOutputParser()
