@@ -51,8 +51,8 @@ if "messages" not in st.session_state:
 
 # getting User input
 userinput = st.chat_input("Say something")
-with st.chat_message("user"):
-        st.write(userinput)
+# with st.chat_message("user"):
+#         st.write(userinput)
 
 if userinput:
     message = st.chat_message("assistant")
