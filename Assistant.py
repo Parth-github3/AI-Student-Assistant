@@ -21,7 +21,7 @@ Provide answers for the following list of questions with explapaination and also
     | llama
     | StrOutputParser()
     #|{"base_response": RunnablePassthrough()}
-    )
+)
 
     
     
