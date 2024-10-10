@@ -22,47 +22,62 @@ Provide answers for the following list of questions with explapaination and also
     | StrOutputParser()
     |{"base_response": RunnablePassthrough()}
     )
-    res =base_summary_chain.invoke(prompt)
+    res =base_summary_chain.invoke(userinput)
     return res
 
 
-# Show title and description.
-st.title("💬 Chatbot")
-st.write(
-    "This is a simple chatbot that uses OpenAI's GPT-3.5 model to generate responses. "
-    "To use this app, you need to provide an OpenAI API key, which you can get [here](https://platform.openai.com/account/api-keys). "
-    "You can also learn how to build this app step by step by [following our tutorial](https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps)."
-)
+# Title of the app
+st.title("AI by PARTH")
 
-# Ask user for their OpenAI API key via `st.text_input`.
-# Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
-# via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
+# Introduction text
+with st.expander("About app..."):
+    st.write("""
+        Welcome to your Personal Health Partner (PHP) ! 
+        My AI-powered (by LLaMA 3 70B) app is designed to provide you with reliable and accessible health information at your fingertips.\n
+        This app compiles every field of your life, you want guidance for. Areas such as Health- Mental, Physical are coverd.\n
+        Whether you have a specific health query or simply want to learn more about wellness,  PHP is here to assist you.\n
+    """)
+
+# Sidebar for additional information
 
 
-# Create a session state variable to store the chat messages. This ensures that the
-    # messages persist across reruns.
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+    
+    
 
-    # Display the existing chat messages via `st.chat_message`.
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
 
-    # Create a chat input field to allow the user to enter a message. This will display
-    # automatically at the bottom of the page.
-    if prompt := st.chat_input("What is up?"):
+# Get user input
 
-        # Store and display the current prompt.
-        st.session_state.messages.append({"role": "user", "content": prompt})
-        with st.chat_message("user"):
-            st.markdown(prompt)
+# Load Groq compiled LLaMA model (replace with your actual model path)
+@st.cache_resource
 
-        # Generate a response using the OpenAI API.
-       
 
-        # Stream the response to the chat using `st.write_stream`, then store it in 
-        # session state.
-        with st.chat_message("assistant"):
-            response = Assistant()
-        st.session_state.messages.append({"role": "assistant", "content": response})
+def yoo():
+    if "messages" not in st.session_state:
+            st.session_state.messages = []
+
+userinput = st.chat_input("Say something")
+with st.chat_message("user"):
+        st.write(userinput)
+
+if userinput:
+    message = st.chat_message("assistant")
+    #message.write(cbt_chain.invoke(user_input))
+    st.session_state.messages.append({"role": "user", "content": userinput})
+    bot_response = Assistant(userinput)
+    st.session_state.messages.append({"role": "assistant", "content": bot_response})
+
+# with st.chat_message:
+#     user_input = st.text_input("You: ", key="user_input", help="Type your message and press Enter")
+
+# If user has input a message, update the chat history and get response
+# if user_input:
+#     st.session_state.messages.append({"role": "user", "content": user_input})
+#     bot_response = cbt_chain.invoke(user_input)
+#     st.session_state.messages.append({"role": "assistant", "content": bot_response})
+
+# Display chat history
+for message in st.session_state.messages:
+    if message["role"] == "user":
+        st.write(f"You: {message['content']}")
+    else:
+        st.write(f"Bot: {message['content']}")
