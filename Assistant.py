@@ -15,9 +15,7 @@ llama = ChatGroq(
 
 
 base_summary_chain = (
-    ChatPromptTemplate.from_template("""
-Provide answers for the following list of questions with explapaination and also track which questions are repeated.
-""")
+    ChatPromptTemplate.from_template("Provide answers for the following list of questions with explapaination and also track which questions are repeated.")
     | llama
     | StrOutputParser()
     #|{"base_response": RunnablePassthrough()}
