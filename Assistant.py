@@ -64,6 +64,9 @@ if userinput:
     bot_response = generate_response(userinput)
     st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
 # Display chat history
 for message in st.session_state.messages:
     if message["role"] == "user":
