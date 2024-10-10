@@ -13,16 +13,16 @@ llama = ChatGroq(
     temperature=0.0
 )
 
-def Assistant():
-    base_summary_chain = (
+
+base_summary_chain = (
     ChatPromptTemplate.from_template("""
 Provide answers for the following list of questions with explapaination and also track which questions are repeated.
 """)
     | llama
     | StrOutputParser()
-    |{"base_response": RunnablePassthrough()}
+    #|{"base_response": RunnablePassthrough()}
     )
-    return base_summary_chain
+
     
     
 
@@ -46,8 +46,8 @@ st.title("AI by PARTH")
 @st.cache_resource
 
 def generate_response(userinput):
-     bot_response = Assistant.invoke(userinput)
-     return bot_response
+    return base_summary_chain.invoke(userinput)
+     
 
 if "messages" not in st.session_state:
         st.session_state.messages = []
