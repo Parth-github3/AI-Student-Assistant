@@ -182,14 +182,14 @@ for uploaded_file in uploaded_files:
             for page in pdf.pages:
                 text += page.extract_text()
                 response = prompt.invoke(text)
-questions = response
+                questions = response
 
         # Answer the repeated questions
 
 
-for question in questions:
+            for question in questions:
         #aprompt = answer_prompt_template.format(question=question)
-        answers = aprompt.invoke(question)
+                answers = aprompt.invoke(question)
  
 st.write(answers)     
 # getting User input
