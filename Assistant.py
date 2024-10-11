@@ -92,13 +92,13 @@ import os
 import pdfplumber
 
 # Set up the LangChain model
-llama
+
 
 qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated questions from the {base_response}. If any questions are repeated then state their repetitions. ")
                       | llama
                       
             )
-achain= ( ChatPromptTemplate.from_template("You are a very intelligent scholar who gives a detailed answer for every question according to their marks provided in the {base_response}")
+achain= ( ChatPromptTemplate.from_template("You are a very intelligent scholar who gives very informative answers for every question in the {base_response}")
                       | llama
                       
             )
@@ -113,7 +113,7 @@ responderchain = (
             [
             ("ai", "{original_response}"),
             ("human", "questions:\n{results_1}\n\nanswers:\n{results_2}"),
-            ("system", "Generate a very detailed response  with Question: and Answer: format."),
+            ("system", "Generate a very detailed and informative response  with Question: and Answer: format."),
             ]
             )
             | llama
@@ -130,22 +130,11 @@ mainchain = (
             | responderchain
             )
 # Define the prompt template for identifying questions
-prompt = ( 
-    PromptTemplate(template ="Identify the questions in the following text: {text} and only give the repeated Questions.")
-    | llama
-)
-
-
-# Define the prompt template for answering repeated questions
-aprompt = ( 
-    PromptTemplate(template ="Answer the given questions in detail. Answer: {answer}")
-    | llama
-)
 # Load the PDF files
 #pdf_files = [f for f in os.listdir("pdfs") if f.endswith(".pdf")]
 
 # Create a dictionary to store the questions and their frequencies
-questions_freq = {}
+
 
 # Process each PDF file
 # for pdf_file in pdf_files:
@@ -168,7 +157,7 @@ questions_freq = {}
         #         questions_freq[question] += 1
 
 # Identify the repeated questions
-repeated_questions = [q for q, freq in questions_freq.items() if freq > 1]
+
 
 # # Answer the repeated questions
 # answers = {}
