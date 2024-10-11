@@ -185,13 +185,13 @@ for uploaded_file in uploaded_files:
                 questions = response
 
         # Answer the repeated questions
-def ans(questions):
-    answers = {}
-    for question in questions:
+
+
+for question in questions:
         #aprompt = answer_prompt_template.format(question=question)
         answers = aprompt.invoke(question)
-    return answers
-st.write(ans)     
+ 
+st.write(answers)     
 # getting User input
 # userinput = st.chat_input("Say something")
 # with st.chat_message("user"):
