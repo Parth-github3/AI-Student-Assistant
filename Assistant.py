@@ -94,13 +94,14 @@ import pdfplumber
 # Set up the LangChain model
 
 
-qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated questions from the {base_response}. If any questions are repeated then state their repetitions. ")
+qchain= ( ChatPromptTemplate.from_template("Provide a list of the questions from the {base_response}. If any questions are repeated then state their repetitions. ")
                       | llama
+                      | StrOutputParser()
                       
             )
 achain= ( ChatPromptTemplate.from_template("You are a very intelligent ai who gives very informative answers for every question in the {base_response}")
                       | llama
-                      
+                      | StrOutputParser()
             )
 basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyzize the text {res} and find similar or repeated questions from the text according to their concept. ")
                       | llama
