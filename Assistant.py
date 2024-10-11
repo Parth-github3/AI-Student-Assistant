@@ -168,6 +168,18 @@ def generate_response(userinput):
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+uploaded_files = st.file_uploader(
+    "Choose a file", accept_multiple_files=True
+)
+for uploaded_file in uploaded_files:
+    bytes_data = uploaded_file.read()
+    st.write("filename:", uploaded_file.name)
+    st.write(bytes_data)
+    with pdfplumber.open(uploaded_file) as pdf:
+        # Extract the text from the PDF
+        text = ""
+        for page in pdf.pages:
+            text += page.extract_text()
 # getting User input
 userinput = st.chat_input("Say something")
 with st.chat_message("user"):
@@ -187,5 +199,5 @@ for message in st.session_state.messages:
         st.write(f"You: {message['content']}")
     else:
         st.write(f"Bot: {message['content']}")
-expand = st.expander("My label")
-expand.write(aresponse)
+
+
