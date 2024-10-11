@@ -107,7 +107,7 @@ aprompt = (
     | llama
 )
 # Load the PDF files
-pdf_files = [f for f in os.listdir("pdfs") if f.endswith(".pdf")]
+#pdf_files = [f for f in os.listdir("pdfs") if f.endswith(".pdf")]
 
 # Create a dictionary to store the questions and their frequencies
 questions_freq = {}
