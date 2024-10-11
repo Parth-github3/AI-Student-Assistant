@@ -241,9 +241,9 @@ if st.button("submit"):
 
 
 # # Display chat history
-for message in st.session_state.messages:
-    if message["role"] == "assistant":
-        st.write(f"bot: {message['content']}")
+# for message in st.session_state.messages:
+#     if message["role"] == "assistant":
+#         st.write(f"bot: {message['content']}")
 
 
 
