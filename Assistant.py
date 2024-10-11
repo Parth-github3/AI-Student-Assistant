@@ -99,7 +99,7 @@ qchain= ( ChatPromptTemplate.from_template("Provide a list of the questions from
                       | StrOutputParser()
                       
             )
-achain= ( ChatPromptTemplate.from_template("You are a very intelligent ai who gives long length and informative answers for every question in the {base_response}")
+achain= ( ChatPromptTemplate.from_template("You are a helpful assistant who Analyzes the questions founded in the {base_response} and provide informative answers for the questions.")
                       | llama
                       | StrOutputParser()
             )
