@@ -180,8 +180,8 @@ for uploaded_file in uploaded_files:
         text = ""
         for page in pdf.pages:
             text += page.extract_text()
-response = prompt.invoke(text)
-questions = response
+            response = prompt.invoke(text)
+            questions = response
         # Answer the repeated questions
 answers = {}
 for question in questions:
