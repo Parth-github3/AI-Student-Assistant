@@ -98,7 +98,7 @@ qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated quest
                       | llama
                       
             )
-achain= ( ChatPromptTemplate.from_template("You are a very intelligent scholar who gives very informative answers for every question in the {base_response}")
+achain= ( ChatPromptTemplate.from_template("You are a very intelligent ai who gives very informative answers for every question in the {base_response}")
                       | llama
                       
             )
@@ -113,7 +113,7 @@ responderchain = (
             [
             ("ai", "{original_response}"),
             ("human", "questions:\n{results_1}\n\nanswers:\n{results_2}"),
-            ("system", "Generate a very detailed and informative response  with Question: and Answer: format."),
+            ("system", "Provide a very detailed and informative response from the results  with Question: and Answer: format."),
             ]
             )
             | llama
