@@ -191,7 +191,7 @@ for uploaded_file in uploaded_files:
         #aprompt = answer_prompt_template.format(question=question)
                 answers = aprompt.invoke(question)
  
-st.write(answers)     
+                st.write(answers)     
 # getting User input
 # userinput = st.chat_input("Say something")
 # with st.chat_message("user"):
