@@ -183,11 +183,12 @@ for uploaded_file in uploaded_files:
             response = prompt.invoke(text)
             questions = response
         # Answer the repeated questions
-answers = {}
-for question in questions:
-    #aprompt = answer_prompt_template.format(question=question)
-    aresponse = aprompt.invoke(question)
-    st.write(aresponse)
+def ans(questions):
+    answers = {}
+    for question in questions:
+        #aprompt = answer_prompt_template.format(question=question)
+        answers = aprompt.invoke(question)
+    return answers     
 # getting User input
 userinput = st.chat_input("Say something")
 with st.chat_message("user"):
@@ -197,7 +198,7 @@ if userinput:
     message = st.chat_message("assistant")
     #message.write(cbt_chain.invoke(user_input))
     st.session_state.messages.append({"role": "user", "content": userinput})
-    bot_response = generate_response(userinput)
+    bot_response = ans(questions)
     st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 
