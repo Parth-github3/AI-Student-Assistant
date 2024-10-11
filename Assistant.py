@@ -182,7 +182,7 @@ for uploaded_file in uploaded_files:
             for page in pdf.pages:
                 text += page.extract_text()
                 response = prompt.invoke(text)
-                questions = response
+questions = response
 
         # Answer the repeated questions
 
