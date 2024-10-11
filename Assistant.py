@@ -167,11 +167,12 @@ def generate_response(userinput):
      
 # if "messages" not in st.session_state:
 #     st.session_state.messages = []
-def pdfpro(uploaded_files):
-    uploaded_files = st.file_uploader(
+
+uploaded_files = st.file_uploader(
         "Choose a file", accept_multiple_files=True
     )
-    for uploaded_file in uploaded_files:
+
+for uploaded_file in uploaded_files:
         bytes_data = uploaded_file.read()
         st.write("filename:", uploaded_file.name)
         st.write(bytes_data)
@@ -182,7 +183,7 @@ def pdfpro(uploaded_files):
                 text += page.extract_text()
                 response = prompt.invoke(text)
                 questions = response
-    return questions
+
         # Answer the repeated questions
 def ans(questions):
     answers = {}
