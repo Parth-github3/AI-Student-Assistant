@@ -190,7 +190,7 @@ for uploaded_file in uploaded_files:
             for question in questions:
         #aprompt = answer_prompt_template.format(question=question)
                 answers = aprompt.invoke(question)
-                st.text_area("content:", value=response, height=300)
+            st.text_area("content:", value=response, height=300)
 # getting User input
 # userinput = st.chat_input("Say something")
 # with st.chat_message("user"):
