@@ -200,8 +200,8 @@ st.title("AI by PARTH")
 def generate_response():
     return mainchain.invoke(res)
      
-# if "messages" not in st.session_state:
-#     st.session_state.messages = []
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
 uploaded_files = st.file_uploader(
         "Choose a file", accept_multiple_files=True
@@ -223,7 +223,7 @@ res= extract()
 if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
-     st.session_state.messages.append({"role": "user", "content": userinput})
+     #st.session_state.messages.append({"role": "user", "content":})
      bot_response = generate_response()
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
