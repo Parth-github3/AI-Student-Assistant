@@ -21,14 +21,12 @@ base_summary_chain = (
     #|{"base_response": RunnablePassthrough()}
 )
 basechain = (
-    ChatPromptTemplate.from_template("You are a proficient gen-ai developer who makes gen-ai projects using langchain. Provide a project code for the given project requirements {requirements} by the client.")
+    ChatPromptTemplate.from_template("You are a proficient ai developer who uses langchain for creating projects. Provide a project code as per the given project requirements {requirements} by the client.")
     | llama
     | StrOutputParser()
     #|{"base_response": RunnablePassthrough()}
 )
     
-    
-
 
 # Title of the app
 st.title("AI by PARTH")
