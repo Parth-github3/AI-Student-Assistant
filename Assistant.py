@@ -94,6 +94,41 @@ import pdfplumber
 # Set up the LangChain model
 llama
 
+qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated questions from the {base_response}. If any questions are repeated then state their repetitions. ")
+                      | llama
+                      
+            )
+achain= ( ChatPromptTemplate.from_template("You are a very intelligent scholar who gives a detailed answer for every question according to their marks provided in the {base_response}")
+                      | llama
+                      
+            )
+basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyzize the text {res} and find similar or repeated questions from the text according to their concept. ")
+                      | llama
+                      | StrOutputParser()
+                      |{"base_response": RunnablePassthrough()}
+                      
+            )
+responderchain = (
+                ChatPromptTemplate.from_messages(
+            [
+            ("ai", "{original_response}"),
+            ("human", "questions:\n{results_1}\n\nanswers:\n{results_2}"),
+            ("system", "Generate a very detailed response  with Question: and Answer: format."),
+            ]
+            )
+            | llama
+            | StrOutputParser()
+            )
+mainchain = (
+            
+            basechain   
+            | {
+                "original_response": itemgetter("base_response"),
+                "results_1": qchain,
+                "results_2": achain,       
+            }
+            | responderchain
+            )
 # Define the prompt template for identifying questions
 prompt = ( 
     PromptTemplate(template ="Identify the questions in the following text: {text} and only give the repeated Questions.")
@@ -162,8 +197,8 @@ st.title("AI by PARTH")
 # Load Groq compiled LLaMA model (replace with your actual model path)
 @st.cache_resource
 
-def generate_response(userinput):
-    return basechain.invoke(userinput)
+def generate_response():
+    return mainchain.invoke(res)
      
 # if "messages" not in st.session_state:
 #     st.session_state.messages = []
@@ -171,26 +206,27 @@ def generate_response(userinput):
 uploaded_files = st.file_uploader(
         "Choose a file", accept_multiple_files=True
     )
+def extract():
+    for uploaded_file in uploaded_files:
+            
+            st.write("filename:", uploaded_file.name)
+            
+            with pdfplumber.open(uploaded_file) as pdf:
+                # Extract the text from the PDF
+                text = ""
+                for page in pdf.pages:
+                    text += page.extract_text()
+                return text
+      
+res= extract()
 
-for uploaded_file in uploaded_files:
-        bytes_data = uploaded_file.read()
-        st.write("filename:", uploaded_file.name)
-        #st.write(bytes_data)
-        with pdfplumber.open(uploaded_file) as pdf:
-            # Extract the text from the PDF
-            text = ""
-            for page in pdf.pages:
-                text += page.extract_text()
-                response = prompt.invoke(text)
-                questions = response
+if st.button("submit"):
+     message = st.chat_message("assistant")
+     #message.write(cbt_chain.invoke(user_input))
+     st.session_state.messages.append({"role": "user", "content": userinput})
+     bot_response = generate_response()
+     st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
-        # Answer the repeated questions
-
-
-            for question in questions:
-        #aprompt = answer_prompt_template.format(question=question)
-                answers = aprompt.invoke(question)
-            st.text_area("content:", value=response, height=300)
 # getting User input
 # userinput = st.chat_input("Say something")
 # with st.chat_message("user"):
@@ -205,10 +241,10 @@ for uploaded_file in uploaded_files:
 
 
 # # Display chat history
-# for message in st.session_state.messages:
-#     if message["role"] == "user":
-#         st.write(f"You: {message['content']}")
-#     else:
-#         st.write(f"Bot: {message['content']}")
+for message in st.session_state.messages:
+    if message["role"] == "user":
+        st.write(f"You: {message['content']}")
+    else:
+        st.write(f"Bot: {message['content']}")
 
 
