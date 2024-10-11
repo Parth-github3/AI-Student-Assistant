@@ -224,7 +224,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = generate_response()
+     bot_response = mainchain.invoke(res)
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 # getting User input
@@ -241,9 +241,9 @@ if st.button("submit"):
 
 
 # # Display chat history
-# for message in st.session_state.messages:
-#     if message["role"] == "assistant":
-#         st.write(f"bot: {message['content']}")
+for message in st.session_state.messages:
+    if message["role"] == "assistant":
+        st.write(f"bot: {message['content']}")
 
 
 
