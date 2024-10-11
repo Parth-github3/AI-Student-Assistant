@@ -114,7 +114,7 @@ responderchain = (
             [
             ("ai", "{original_response}"),
             ("human", "questions:\n{results_1}\n\nanswers:\n{results_2}"),
-            ("system", "Provide a very detailed and informative response from the results  with Question: and Answer: format."),
+            ("system", "Provide a list of repeated questions with its repetitions and informative answers from the results  with Question: and Answer: format."),
             ]
             )
             | llama
