@@ -113,17 +113,17 @@ pdf_files = [f for f in os.listdir("pdfs") if f.endswith(".pdf")]
 questions_freq = {}
 
 # Process each PDF file
-for pdf_file in pdf_files:
-    with pdfplumber.open(f"pdfs/{pdf_file}") as pdf:
-        # Extract the text from the PDF
-        text = ""
-        for page in pdf.pages:
-            text += page.extract_text()
+# for pdf_file in pdf_files:
+#     with pdfplumber.open(f"pdfs/{pdf_file}") as pdf:
+#         # Extract the text from the PDF
+#         text = ""
+#         for page in pdf.pages:
+#             text += page.extract_text()
 
         # Identify the questions in the text
         #prompt = question_prompt_template.format(text=text)
-        response = prompt.invoke(text)
-        questions = response#[q.strip() for q in response.split("Questions:")[1].splitlines() if q.strip()]
+# response = prompt.invoke(text)
+# questions = response#[q.strip() for q in response.split("Questions:")[1].splitlines() if q.strip()]
 
         # Update the questions frequency dictionary
         # for question in questions:
@@ -135,11 +135,11 @@ for pdf_file in pdf_files:
 # Identify the repeated questions
 repeated_questions = [q for q, freq in questions_freq.items() if freq > 1]
 
-# Answer the repeated questions
-answers = {}
-for question in questions:
-    #aprompt = answer_prompt_template.format(question=question)
-    aresponse = aprompt.invoke(question)
+# # Answer the repeated questions
+# answers = {}
+# for question in questions:
+#     #aprompt = answer_prompt_template.format(question=question)
+#     aresponse = aprompt.invoke(question)
     #answers[question] = response.split("Answer:")[1].strip()
 
 # Print the answers
@@ -180,6 +180,14 @@ for uploaded_file in uploaded_files:
         text = ""
         for page in pdf.pages:
             text += page.extract_text()
+        response = prompt.invoke(text)
+        questions = response
+        # Answer the repeated questions
+answers = {}
+for question in questions:
+    #aprompt = answer_prompt_template.format(question=question)
+    aresponse = aprompt.invoke(question)
+    st.write(aresponse)
 # getting User input
 userinput = st.chat_input("Say something")
 with st.chat_message("user"):
