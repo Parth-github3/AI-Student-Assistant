@@ -99,11 +99,11 @@ qchain= ( ChatPromptTemplate.from_template("Provide a list of the questions from
                       | StrOutputParser()
                       
             )
-achain= ( ChatPromptTemplate.from_template("You are a helpful assistant who Analyzes the questions founded in the {base_response} and provide informative answers for the questions.")
-                      | llama
-                      | StrOutputParser()
-            )
-basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyzize the text {res} and find similar or repeated questions from the text according to their concept. ")
+# achain= ( ChatPromptTemplate.from_template("You are a helpful assistant who Analyzes the questions founded in the {base_response} and provide informative answers for the questions.")
+#                       | llama
+#                       | StrOutputParser()
+#             )
+basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyzize the text {res} and find similar or repeated questions from the text according to their concept. Also, generate detailed answers for the derived questions. ")
                       | llama
                       | StrOutputParser()
                       |{"base_response": RunnablePassthrough()}
@@ -113,20 +113,21 @@ responderchain = (
                 ChatPromptTemplate.from_messages(
             [
             ("ai", "{original_response}"),
-            ("human", "questions:\n{results_1}\n\nanswers:\n{results_2}"),
-            ("system", "Provide a list of repeated questions with its repetitions. Also, generate informative answers for each question in the result  with Question: and Answer: format."),
+            ("human", "questions:\n{results_1}"),
+            ("system", "Provide a list of repeated questions with its repetitions. Also, provide informative answers for each question in the result  with Question: and Answer: format."),
             ]
             )
             | llama
             | StrOutputParser()
             )
+#\n\nanswers:\n{results_2}
 mainchain = (
             
             basechain   
             | {
                 "original_response": itemgetter("base_response"),
                 "results_1": qchain,
-                "results_2": achain,       
+                #"results_2": achain,       
             }
             | responderchain
             )
