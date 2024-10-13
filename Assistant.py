@@ -100,7 +100,7 @@ qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated quest
                       | {"q_response": RunnablePassthrough()}
                       
             )
-achain= ( ChatPromptTemplate.from_template("You are an Ai who gives informative answers for all the given questions present in {q_response} by  understanding the concept.")
+achain= ( ChatPromptTemplate.from_template("You are an Ai who provides informative answers for each question found in this response {q_response} by  understanding the concept.")
                       | llama
                       | StrOutputParser()
             )
@@ -113,7 +113,7 @@ basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyz
 responderchain = (
                 ChatPromptTemplate.from_messages(
             [
-            ("ai", "{original_response}"),
+            #("ai", "{original_response}"),
             ("human", "questions:\n{results_1}\n\nanswers:\n{results_2}"),
             ("system", "Provide a list of repeated questions and also state its repetitions. Also, provide informative answers for each question in the results  with Question: and Answer: format."),
             ]
@@ -126,7 +126,7 @@ mainchain = (
             
             basechain   
             | {
-                "original_response": itemgetter("q_response"),
+                #"original_response": itemgetter("q_response"),
                 "results_1": qchain,
                 "results_2": achain,       
             }
@@ -216,7 +216,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = qchain.invoke(res)
+     bot_response = achain.invoke(res)
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 # getting User input
