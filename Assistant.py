@@ -204,22 +204,19 @@ def extract():
     for uploaded_file in uploaded_files:
             
             st.write("filename:", uploaded_file.name)
+            if uploaded_file is not None:
+                # To read file as string:
+                    string_data = StringIO.read()
+                    #st.write(string_data)
+                    return string_data
             
-            with pdfplumber.open(uploaded_file) as pdf:
-                # Extract the text from the PDF
-                text = ""
-                for page in pdf.pages:
-                    text += page.extract_text()
-                return text
-    if uploaded_file is not None:
-    # To read file as bytes:
-    
+            # with pdfplumber.open(uploaded_file) as pdf:
+            #     # Extract the text from the PDF
+            #     text = ""
+            #     for page in pdf.pages:
+            #         text += page.extract_text()
+            #     return text
 
-
-
-    # To read file as string:
-        string_data = StringIO.read()
-        st.write(string_data)
 
       
 res= extract()
