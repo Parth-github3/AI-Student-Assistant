@@ -135,7 +135,7 @@ mainchain = (
             | responderchain
             )
 demchain = (
-     basechain
+     qchain
      | achain
 )
 # Define the prompt template for identifying questions
