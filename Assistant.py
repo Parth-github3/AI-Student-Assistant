@@ -113,9 +113,9 @@ basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyz
 responderchain = (
                 ChatPromptTemplate.from_messages(
             [
-            #("ai", "{original_response}"),
+            ("ai", "{original_response}"),
             ("human", "questions:\n{results_1}"),
-            ("system", "Provide a list of repeated questions with its repetitions. Also, provide informative answers for each question in the result  with Question: and Answer: format."),
+            ("system", "Provide a list of repeated questions and also state its repetitions. Also, provide informative answers for each question in the results  with Question: and Answer: format."),
             ]
             )
             | llama
@@ -126,7 +126,7 @@ mainchain = (
             
             basechain   
             | {
-                "original_response": itemgetter(achain),
+                "original_response": itemgetter("q_response"),
                 "results_1": qchain,
                 "results_2": achain,       
             }
@@ -216,7 +216,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = achain.invoke(res)
+     bot_response = qchain.invoke(res)
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 # getting User input
