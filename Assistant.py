@@ -134,6 +134,10 @@ mainchain = (
             }
             | responderchain
             )
+demchain = (
+     basechain
+     | achain
+)
 # Define the prompt template for identifying questions
 # Load the PDF files
 #pdf_files = [f for f in os.listdir("pdfs") if f.endswith(".pdf")]
@@ -204,10 +208,7 @@ for uploaded_file in uploaded_files:
     st.write("filename:", uploaded_file.name)
 def extract():
     for uploaded_file in uploaded_files:
-            
-            
-            
-            with pdfplumber.open(uploaded_file) as pdf:
+        with pdfplumber.open(uploaded_file) as pdf:
                 # Extract the text from the PDF
                 text = ""
                 for page in pdf.pages:
@@ -222,7 +223,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = mainchain.invoke(res)
+     bot_response = demchain.invoke(res)
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 # getting User input
