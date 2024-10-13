@@ -97,10 +97,10 @@ import pdfplumber
 qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated questions 'or' similar conceptual questions with their concept from the {base_response}. Also, If any questions are repeated then state their repetitions.")
                       | llama
                       | StrOutputParser()
-                      #| {"q_response": RunnablePassthrough()}
+                      | {"q_response": RunnablePassthrough()}
                       
             )
-achain= ( ChatPromptTemplate.from_template("You are an intelligent Ai which understands the concept and generates informative and detailed answers for the questions in {q_response}")
+achain= ( ChatPromptTemplate.from_template("You are an intelligent Ai which generates informative answers by  understanding the concept  for the given questions in {q_response}")
                       | llama
                       | StrOutputParser()
             )
@@ -114,7 +114,7 @@ responderchain = (
                 ChatPromptTemplate.from_messages(
             [
             ("ai", "{original_response}"),
-            ("human", "questions:\n{results_1}"),
+            ("human", "questions:\n{results_1}\n\nanswers:\n{results_2}"),
             ("system", "Provide a list of repeated questions and also state its repetitions. Also, provide informative answers for each question in the results  with Question: and Answer: format."),
             ]
             )
@@ -216,7 +216,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = qchain.invoke(res)
+     bot_response = achain.invoke(res)
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 # getting User input
