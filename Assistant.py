@@ -191,7 +191,7 @@ st.title("AI by PARTH")
 @st.cache_resource
 
 def generate_response():
-    return mainchain.invoke(res)
+    return achain.invoke(res)
      
 if "messages" not in st.session_state:
     st.session_state.messages = []
