@@ -205,8 +205,10 @@ def extract():
             
             st.write("filename:", uploaded_file.name)
             if uploaded_file is not None:
+                    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+
                 # To read file as string:
-                    string_data = StringIO.read(uploaded_file)
+                    string_data = stringio.read(uploaded_file)
                     #st.write(string_data)
                     return string_data
             
