@@ -94,19 +94,20 @@ import pdfplumber
 # Set up the LangChain model
 
 
-qchain= ( ChatPromptTemplate.from_template("Provide a list of the questions from the {base_response}. If any questions are repeated then state their repetitions. ")
+qchain= ( ChatPromptTemplate.from_template("Provide a list of the questions with their concept from the {base_response}. If any questions are repeated then state their repetitions.")
                       | llama
                       | StrOutputParser()
+                      | {"q_response": RunnablePassthrough()}
                       
             )
-achain= ( ChatPromptTemplate.from_template("You are a helpful assistant who Analyzes the questions founded in the {base_response} and provide informative answers for the questions.")
+achain= ( ChatPromptTemplate.from_template("You are an intelligent Ai which understands the concept and generates informative and detailed answers for the questions in {q_response}")
                       | llama
                       | StrOutputParser()
             )
-basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyzize the text {res} and find similar or repeated questions from the text according to their concept. Also, generate detailed answers for the derived questions. ")
+basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyzize the text {res} and find similar or repeated questions from the text according to their concept.")
                       | llama
                       | StrOutputParser()
-                      #|{"base_response": RunnablePassthrough()}
+                      |{"base_response": RunnablePassthrough()}
                       
             )
 responderchain = (
@@ -125,9 +126,9 @@ mainchain = (
             
             basechain   
             | {
-                "original_response": itemgetter("base_response"),
+                "original_response": itemgetter(achain),
                 "results_1": qchain,
-                #"results_2": achain,       
+                "results_2": achain,       
             }
             | responderchain
             )
@@ -215,7 +216,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = basechain.invoke(res)
+     bot_response = mainchain.invoke(res)
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 # getting User input
