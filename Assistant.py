@@ -125,11 +125,8 @@ responderchain = (
 mainchain = (
             
             basechain   
-            | {
-                "original_response": itemgetter("q_response"),
-                "results_1": qchain,
-                "results_2": achain,       
-            }
+            | qchain
+            | achain
             | responderchain
             )
 # Define the prompt template for identifying questions
