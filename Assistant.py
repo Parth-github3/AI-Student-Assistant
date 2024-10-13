@@ -94,10 +94,10 @@ import pdfplumber
 # Set up the LangChain model
 
 
-qchain= ( ChatPromptTemplate.from_template("Provide a list of the questions with their concept from the {base_response}. If any questions are repeated then state their repetitions.")
+qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated or similar questions with their concept from the {base_response}. If any questions are repeated then state their repetitions.")
                       | llama
                       | StrOutputParser()
-                      | {"q_response": RunnablePassthrough()}
+                      #| {"q_response": RunnablePassthrough()}
                       
             )
 achain= ( ChatPromptTemplate.from_template("You are an intelligent Ai which understands the concept and generates informative and detailed answers for the questions in {q_response}")
