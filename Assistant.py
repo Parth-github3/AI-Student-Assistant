@@ -106,7 +106,7 @@ achain= ( ChatPromptTemplate.from_template("You are a helpful assistant who Anal
 basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyzize the text {res} and find similar or repeated questions from the text according to their concept. Also, generate detailed answers for the derived questions. ")
                       | llama
                       | StrOutputParser()
-                      |{"base_response": RunnablePassthrough()}
+                      #|{"base_response": RunnablePassthrough()}
                       
             )
 responderchain = (
