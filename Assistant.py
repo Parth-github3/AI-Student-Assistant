@@ -101,7 +101,7 @@ qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated quest
                       #| {"q_response": RunnablePassthrough()}
                       
             )
-achain= ( ChatPromptTemplate.from_template("You are an intelligent ai which generates informative answers for all the questions {base_response} by  understanding the concept and Explains every answer in detail. ")
+achain= ( ChatPromptTemplate.from_template("You are an intelligent ai which generates informative answers for all the questions {base_response} and Explains every answer in detail. ")
                       | llama
                       | StrOutputParser()
             )
@@ -137,7 +137,7 @@ mainchain = (
 demchain = (
      qchain
      | achain
-     | responderchain
+     
 )
 # Define the prompt template for identifying questions
 # Load the PDF files
