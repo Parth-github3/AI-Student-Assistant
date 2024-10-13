@@ -5,6 +5,7 @@ from langchain_core.prompts import ChatPromptTemplate ,PromptTemplate
 from operator import itemgetter
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
+from io import StringIO
 
 #LLM Model
 llama = ChatGroq(
@@ -210,6 +211,16 @@ def extract():
                 for page in pdf.pages:
                     text += page.extract_text()
                 return text
+    if uploaded_file is not None:
+    # To read file as bytes:
+    
+
+
+
+    # To read file as string:
+        string_data = StringIO.read()
+        st.write(string_data)
+
       
 res= extract()
 
