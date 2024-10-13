@@ -200,24 +200,19 @@ if "messages" not in st.session_state:
 uploaded_files = st.file_uploader(
         "Choose a file", accept_multiple_files=True
     )
+for uploaded_file in uploaded_files:
+    st.write("filename:", uploaded_file.name)
 def extract():
     for uploaded_file in uploaded_files:
             
-            st.write("filename:", uploaded_file.name)
-            if uploaded_file is not None:
-                    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-
-                # To read file as string:
-                    string_data = stringio.read(uploaded_file)
-                    #st.write(string_data)
-                    return string_data
             
-            # with pdfplumber.open(uploaded_file) as pdf:
-            #     # Extract the text from the PDF
-            #     text = ""
-            #     for page in pdf.pages:
-            #         text += page.extract_text()
-            #     return text
+            
+            with pdfplumber.open(uploaded_file) as pdf:
+                # Extract the text from the PDF
+                text = ""
+                for page in pdf.pages:
+                    text += page.extract_text()
+                return text
 
 
       
