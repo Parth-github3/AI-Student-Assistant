@@ -99,10 +99,10 @@ qchain= ( ChatPromptTemplate.from_template("Provide a list of the questions from
                       | StrOutputParser()
                       
             )
-# achain= ( ChatPromptTemplate.from_template("You are a helpful assistant who Analyzes the questions founded in the {base_response} and provide informative answers for the questions.")
-#                       | llama
-#                       | StrOutputParser()
-#             )
+achain= ( ChatPromptTemplate.from_template("You are a helpful assistant who Analyzes the questions founded in the {base_response} and provide informative answers for the questions.")
+                      | llama
+                      | StrOutputParser()
+            )
 basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyzize the text {res} and find similar or repeated questions from the text according to their concept. Also, generate detailed answers for the derived questions. ")
                       | llama
                       | StrOutputParser()
@@ -215,7 +215,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = qchain.invoke(res)
+     bot_response = achain.invoke(res)
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 # getting User input
