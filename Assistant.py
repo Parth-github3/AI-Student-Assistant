@@ -137,6 +137,7 @@ mainchain = (
 demchain = (
      qchain
      | achain
+     | responderchain
 )
 # Define the prompt template for identifying questions
 # Load the PDF files
