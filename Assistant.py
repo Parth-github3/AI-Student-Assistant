@@ -113,7 +113,7 @@ basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyz
 responderchain = (
                 ChatPromptTemplate.from_messages(
             [
-            ("ai", "{original_response}"),
+            #("ai", "{original_response}"),
             ("human", "questions:\n{results_1}"),
             ("system", "Provide a list of repeated questions with its repetitions. Also, provide informative answers for each question in the result  with Question: and Answer: format."),
             ]
