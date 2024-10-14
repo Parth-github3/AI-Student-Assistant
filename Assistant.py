@@ -235,7 +235,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = demchain.invoke(ext)
+     bot_response = demchain.invoke(res)
      
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
