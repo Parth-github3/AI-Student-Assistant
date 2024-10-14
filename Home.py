@@ -1,9 +1,9 @@
 import streamlit as st
 
 st.markdown("""
-## Hello students! Hope you find this app when your exam is near.\n
+### Hello students! Hope you find this app when your exam is near.\n
 This app will make your exam preparations smooth as butter!\n
-            There are 3 functions of this app:\n
+There are 3 functions of this app:\n
             1. Question
             2. Answer
             3. Concept-Learning Plan
