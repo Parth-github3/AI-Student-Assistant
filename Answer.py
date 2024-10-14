@@ -13,7 +13,7 @@ llama = ChatGroq(
     temperature=0.0
 )
 
-achain= ( ChatPromptTemplate.from_template("Generate detailed answers for the following questions {base_response} with explantions of each answer.")
+achain= ( ChatPromptTemplate.from_template("You are an intelligent ai made for assisting students for completing their assingnments. You are bound to answer every question provided in this list {que}")
                       | llama
                       | StrOutputParser()
             )
@@ -52,7 +52,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = anschain.invoke(que)
+     bot_response = achain.invoke(que)
      
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
      download_response_as_pdf(bot_response)
