@@ -212,7 +212,7 @@ def generate_response(res):
 def download_response_as_pdf(bot_response):
     st.download_button(
         label="Download PDF",
-        data=bot_response
+        data=bot_response,
         file_name="chatbot_response.txt",
         #mime="application/pdf"
     )
