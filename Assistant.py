@@ -225,6 +225,7 @@ def yo():
             with pdfplumber.open(file) as pdf:
                 for page in pdf.pages:
                     extracted_text.append(page.extract_text())
+                    extracted_text = ' '.join(extracted_text)
         return extracted_text
       
 res= yo()
