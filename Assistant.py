@@ -216,8 +216,8 @@ if "messages" not in st.session_state:
 uploaded_files = st.file_uploader(
         "Choose a file", accept_multiple_files=True
     )
-for uploaded_file in uploaded_files:
-    st.write("filename:", uploaded_file.name)
+# for uploaded_file in uploaded_files:
+#     st.write("filename:", uploaded_file.name)
 # text = ""
 # for uploaded_file in uploaded_files:
             
