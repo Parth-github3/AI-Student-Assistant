@@ -105,7 +105,7 @@ achain= ( ChatPromptTemplate.from_template("You are an intelligent ai which gene
                       | llama
                       | StrOutputParser()
             )
-basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Your task is to Analyzize the question papers {ext} and find all the questions from each question paper according to their concept.")
+basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Your task is to Analyzize the question papers from this list {res} and find all the questions from each question paper according to their concept.")
                       | llama
                       | StrOutputParser()
                       |{"base_response": RunnablePassthrough()}
@@ -229,7 +229,7 @@ def yo():
         return extracted_text
       
 res= yo()
-ext = ' '.join(res)
+#ext = ' '.join(res)
 
 if st.button("submit"):
      message = st.chat_message("assistant")
