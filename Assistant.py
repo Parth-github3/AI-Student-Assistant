@@ -137,6 +137,7 @@ mainchain = (
 demchaina = (
      basechain
      | achain
+     | StrOutputParser
 )
 demchainq = (
      basechain
