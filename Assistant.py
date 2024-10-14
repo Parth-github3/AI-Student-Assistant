@@ -214,8 +214,9 @@ def download_response_as_pdf(bot_response):
         label="Download PDF",
         data=bot_response.encode("utf-8"),
         file_name="chatbot_response.pdf",
-        #mime="text/pdf"
+        mime="application/pdf"
     )
+    st.write(type(bot_response))
      
 if "messages" not in st.session_state:
     st.session_state.messages = []
