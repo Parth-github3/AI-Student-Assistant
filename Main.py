@@ -10,6 +10,10 @@ pages = {
         st.Page("Answer.py", title="ans"),
 
     ],
+    "Concept": [
+        st.Page("PL.py", title="Concept"),
+
+    ],
 }
 
 pg = st.navigation(pages)
