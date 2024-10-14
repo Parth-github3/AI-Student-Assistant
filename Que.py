@@ -175,7 +175,7 @@ demchainq = (
 # Print the answers
 
 # Title of the app
-st.title("AI by PARTH")
+
 
 # Introduction text
 

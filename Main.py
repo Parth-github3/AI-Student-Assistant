@@ -1,5 +1,6 @@
 import streamlit as st
 
+st.title("AI Exam Prep by PARTH")
 
 pages = {
     "Question": [
@@ -19,6 +20,9 @@ pages = {
 if st.sidebar.button("Clear History"):
     st.session_state.clear()
 
+class info:
+    if pages == "Question":
+        st.sidebar.markdown("ji")
 
 pg = st.navigation(pages)
 pg.run()
