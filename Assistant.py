@@ -276,6 +276,4 @@ for message in st.session_state.messages:
         st.write(f"bot: {message['content']}")
 
 
-pg = st.navigation([st.Page("Answer.py")])
-pg.run()
 
