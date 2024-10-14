@@ -16,10 +16,7 @@ pages = {
     ],
 }
 
-if st.button("Que"):
-    st.switch_page("pages/Que.py")
-if st.button("Ans"):
-    st.switch_page("pages/Ans.py")
+if st.button("Clear History"):
     st.session_state.clear()
 
 pg = st.navigation(pages)
