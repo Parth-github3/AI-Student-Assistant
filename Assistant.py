@@ -101,7 +101,7 @@ qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated quest
                       #| {"q_response": RunnablePassthrough()}
                       
             )
-achain= ( ChatPromptTemplate.from_template("Provide responses for all the given questions with detail explanations by understang the concepts {base_response}.")
+achain= ( ChatPromptTemplate.from_template("Provide responses for all the given questions with detail explanations by understang the concepts {base_response}. You shall continue until you finish every concept.")
                       | llama
                       | StrOutputParser()
             )
