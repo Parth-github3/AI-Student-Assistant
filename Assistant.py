@@ -103,7 +103,7 @@ qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated quest
             )
 achain= ( ChatPromptTemplate.from_template("Provide responses for all the given questions with detail explanations by understang the concepts {base_response}.")
                       | llama
-                      | StrOutputParser()
+                      #| StrOutputParser()
             )
 basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Your task is to Analyzize these question papers {res} and find all the questions from each question paper according to their concept.")
                       | llama
