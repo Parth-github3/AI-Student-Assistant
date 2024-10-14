@@ -16,5 +16,11 @@ pages = {
     ],
 }
 
+if st.button("Que"):
+    st.switch_page("Assistant.py")
+if st.button("Ans"):
+    st.switch_page("pages/Answer.py")
+    st.session_state.clear()
+
 pg = st.navigation(pages)
 pg.run()
