@@ -2,16 +2,16 @@ import streamlit as st
 
 
 pages = {
-    "Que": [
-        st.Page("Assistant.py", title="que "),
+    "Question": [
+        st.Page("Que.py", title="Question"),
         
     ],
-    "Ans": [
-        st.Page("Answer.py", title="ans"),
+    "Answer": [
+        st.Page("Answer.py", title="Answer"),
 
     ],
-    "Concept": [
-        st.Page("PL.py", title="Concept"),
+    "Concept-Learning Plan": [
+        st.Page("PL.py", title="Concept-Learning Plan"),
 
     ],
 }
@@ -19,5 +19,14 @@ pages = {
 if st.sidebar.button("Clear History"):
     st.session_state.clear()
 
+def info(pages):
+    match pages:
+        case "Question":
+            qinfo = "Enter pdf"
+            return qinfo
+        case "Answer":
+            ainfo = "Enter text ile"
+            return ainfo
+st.sidebar.markdown(info())
 pg = st.navigation(pages)
 pg.run()

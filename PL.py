@@ -13,7 +13,7 @@ llama = ChatGroq(
     temperature=0.0
 )
 
-cchain= ( ChatPromptTemplate.from_template("you are a expert analyst. your task is to Create a hierarchal plan for studying these concepts {concepts} and represent it with flow chart. Also, explain the your created plan.")
+cchain= ( ChatPromptTemplate.from_template("you are a expert analyst. your task is to Create a hierarchal plan for studying these concepts {concepts} and represent it with flow chart. Also, explain the your created plan. Guide and encourage students to follow your plan.")
                       | llama
                       | StrOutputParser()
             )
@@ -41,7 +41,7 @@ def download_response_as_pdf(bot_response):
     st.download_button(
         label="Download as file",
         data=bot_response,
-        file_name="Ans_response.txt",
+        file_name="Plan_response.txt",
         #mime="application/pdf"
     )
 

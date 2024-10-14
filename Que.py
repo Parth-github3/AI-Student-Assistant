@@ -194,7 +194,7 @@ def download_response_as_pdf(bot_response):
     st.download_button(
         label="Download as file",
         data=bot_response,
-        file_name="chatbot_response.txt",
+        file_name="Question_response.txt",
         #mime="application/pdf"
     )
      
