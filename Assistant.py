@@ -108,7 +108,7 @@ achain= ( ChatPromptTemplate.from_template("You are an intelligent ai which gene
 basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Your task is to Analyzize the question papers {ext} and find all the questions from each question paper according to their concept.")
                       | llama
                       | StrOutputParser()
-                      #|{"base_response": RunnablePassthrough()}
+                      |{"base_response": RunnablePassthrough()}
                       
             )
 responderchain = (
@@ -136,7 +136,7 @@ mainchain = (
             )
 demchain = (
      basechain
-     #| qchain
+     | qchain
      
 )
 # Define the prompt template for identifying questions
@@ -236,7 +236,7 @@ if st.button("submit"):
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
      #bot_response = demchain.invoke(res)
-     bot_response= basechain
+     bot_response= demchain
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 # getting User input
