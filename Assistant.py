@@ -207,18 +207,18 @@ uploaded_files = st.file_uploader(
     )
 for uploaded_file in uploaded_files:
     st.write("filename:", uploaded_file.name)
-def extract():
-    for uploaded_file in uploaded_files:
+
+for uploaded_file in uploaded_files:
         with pdfplumber.open(uploaded_file) as pdf:
                 # Extract the text from the PDF
                 text = ""
                 for page in pdf.pages:
                     text += page.extract_text()
-                return text
+
 
 
       
-res= extract()
+res= text
 
 if st.button("submit"):
      message = st.chat_message("assistant")
