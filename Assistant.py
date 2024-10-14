@@ -216,12 +216,18 @@ for uploaded_file in uploaded_files:
                 
                 for page in pdf.pages:
                     text.append(page.extract_text())
-                    #text += page.extract_text()
-
-
-
+ 
+                   #text += page.extract_text()
+def yo():
+    
+        extracted_text = []
+        for file in uploaded_files:
+            with pdfplumber.open(file) as pdf:
+                for page in pdf.pages:
+                    extracted_text.append(page.extract_text())
+        return extracted_text
       
-res= text
+res= yo()
 
 if st.button("submit"):
      message = st.chat_message("assistant")
