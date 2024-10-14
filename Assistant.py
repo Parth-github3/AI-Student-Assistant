@@ -181,26 +181,14 @@ st.title("AI by PARTH")
 
 
 # Sidebar for additional information
-option= st.sidebar.selectbox(
-    "Hello! How can I help you?",
-    ("Question", "ans"),
-    index=None,
-    placeholder="Select any...",
-)
-st.sidebar.title(option)
-st.sidebar.header("Description")
+
 
 # Get user input
 
 # Load Groq compiled LLaMA model (replace with your actual model path)
 @st.cache_resource
 
-def generate_response(res):
-    match option:
-        case "Question":
-            return demchainq.invoke(res)
-        case "ans":
-            return None
+
 
 def download_response_as_pdf(bot_response):
     st.download_button(
