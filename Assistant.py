@@ -134,11 +134,13 @@ mainchain = (
             }
             | responderchain
             )
-demchain = (
+demchaina = (
      basechain
      | achain
-
-     
+)
+demchainq = (
+     basechain
+     | qchain
 )
 # Define the prompt template for identifying questions
 # Load the PDF files
@@ -186,11 +188,14 @@ st.title("AI by PARTH")
 
 
 # Sidebar for additional information
-
-
-    
-    
-
+option= st.sidebar.selectbox(
+    "Hello! How can I help you?",
+    ("Question ", "ans"),
+    index=None,
+    placeholder="Select any...",
+)
+st.sidebar.title(option)
+st.sidebar.header("Description")
 
 # Get user input
 
@@ -198,7 +203,11 @@ st.title("AI by PARTH")
 @st.cache_resource
 
 def generate_response():
-    return achain.invoke(res)
+    match option:
+        case "Question":
+            return demchainq.invoke(res)
+        case "ans":
+            return demchaina.invoke(res)
      
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -235,7 +244,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = demchain.invoke(res)
+     bot_response = generate_response()
      
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
