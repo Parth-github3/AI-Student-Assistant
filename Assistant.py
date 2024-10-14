@@ -220,7 +220,7 @@ for uploaded_file in uploaded_files:
                    #text += page.extract_text()
 def yo():
     
-        extracted_text = []
+        extracted_text = ""
         for file in uploaded_files:
             with pdfplumber.open(file) as pdf:
                 for page in pdf.pages:
