@@ -31,6 +31,7 @@ uploaded_files = st.file_uploader(
         "Choose a file", accept_multiple_files=True
     )
 def questions():
+    decoded_text = ""
     for file in uploaded_files:
         file_bytes = file.read()
         decoded_text = file_bytes.decode("utf-8")
