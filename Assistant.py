@@ -220,7 +220,7 @@ for uploaded_file in uploaded_files:
                    #text += page.extract_text()
 def yo():
     
-        extracted_text = ""
+        extracted_text = []
         for file in uploaded_files:
             with pdfplumber.open(file) as pdf:
                 for page in pdf.pages:
@@ -234,7 +234,7 @@ if st.button("submit"):
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
      #bot_response = demchain.invoke(res)
-     bot_response= st.write(res)
+     bot_response= demchain
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 # getting User input
