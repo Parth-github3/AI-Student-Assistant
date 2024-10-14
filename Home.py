@@ -3,12 +3,12 @@ import streamlit as st
 st.markdown("""
 ### Hello students! Hope you find this app when your exam is near.\n
 This app will make your exam preparations smooth as butter!\n
-There are 3 functions of this app:\n
+        There are 3 functions of this app:\n
             1. Question
             2. Answer
             3. Concept-Learning Plan
 """)
-with st.expander("About app..."):
+with st.expander("About Question..."):
     st.markdown("""
     "Question" is a place where you upload your Past Year Question papers and get your imp questions in seconds.\n
     Input: Question papers(one or more) **Format:** PDF\n
