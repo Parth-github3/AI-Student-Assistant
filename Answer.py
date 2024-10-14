@@ -32,9 +32,9 @@ uploaded_files = st.file_uploader(
     )
 def questions():
     for file in uploaded_files:
-        with open(file, 'r') as file:
-            text = file.read()
-        return text
+        file_bytes = file.read()
+        decoded_text = file_bytes.decode("utf-8")
+    return decoded_text
 que = questions()
 
 def download_response_as_pdf(bot_response):
@@ -47,7 +47,7 @@ def download_response_as_pdf(bot_response):
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    
+
 if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
