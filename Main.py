@@ -27,6 +27,6 @@ class info:
         elif pages == "Answer":
             ainfo = "Enter text ile"
             st.sidebar.markdown(ainfo)
-
+st.sidebar.markdown("hi")
 pg = st.navigation(pages)
 pg.run()
