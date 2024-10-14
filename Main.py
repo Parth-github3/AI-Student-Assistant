@@ -16,7 +16,7 @@ pages = {
     ],
 }
 
-if st.button("Clear History"):
+if st.sidebar.button("Clear History"):
     st.session_state.clear()
 
 pg = st.navigation(pages)
