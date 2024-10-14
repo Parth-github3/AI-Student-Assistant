@@ -137,7 +137,6 @@ mainchain = (
 demchain = (
      qchain
      | achain
-     |responderchain
 
      
 )
