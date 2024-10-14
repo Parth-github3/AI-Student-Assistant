@@ -105,7 +105,7 @@ achain= ( ChatPromptTemplate.from_template("You are an intelligent ai which gene
                       | llama
                       | StrOutputParser()
             )
-basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Your task is to Analyzize the question papers {res} and find all the questions from each question paper according to their concept.")
+basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Your task is to Analyzize the question papers {ext} and find all the questions from each question paper according to their concept.")
                       | llama
                       | StrOutputParser()
                       #|{"base_response": RunnablePassthrough()}
@@ -229,14 +229,14 @@ def yo():
         return extracted_text
       
 res= yo()
-res = res = ' '.join(res)
+ext = res = ' '.join(res)
 
 if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
      #bot_response = demchain.invoke(res)
-     bot_response= res
+     bot_response= basechain
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
 
 # getting User input
