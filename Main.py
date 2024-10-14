@@ -19,14 +19,14 @@ pages = {
 if st.sidebar.button("Clear History"):
     st.session_state.clear()
 
-def info(pages):
-    match pages:
-        case "Question":
+class info:
+
+        if pages == "Question":
             qinfo = "Enter pdf"
-            return qinfo
-        case "Answer":
+            st.sidebar.markdown(qinfo)
+        elif pages == "Answer":
             ainfo = "Enter text ile"
-            return ainfo
-st.sidebar.markdown(info(pages))
+            st.sidebar.markdown(ainfo)
+
 pg = st.navigation(pages)
 pg.run()
