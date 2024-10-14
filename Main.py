@@ -3,15 +3,15 @@ import streamlit as st
 
 pages = {
     "Question": [
-        st.Page("Que.py", title="Question"),
+        st.Page("Que.py", title="Upload your PYQ papers."),
         
     ],
     "Answer": [
-        st.Page("Answer.py", title="Answer"),
+        st.Page("Answer.py", title="Enter the question text file."),
 
     ],
     "Concept-Learning Plan": [
-        st.Page("PL.py", title="Concept-Learning Plan"),
+        st.Page("PL.py", title="Enter the question text file."),
 
     ],
 }
