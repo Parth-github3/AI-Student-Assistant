@@ -13,7 +13,7 @@ llama = ChatGroq(
     temperature=0.0
 )
 
-achain= ( ChatPromptTemplate.from_template("Provide responses for all the given questions with detail explanations by understang the concepts {base_response}. You shall continue until you finish every concept.")
+achain= ( ChatPromptTemplate.from_template("Generate detailed answers for the following questions {base_response} with explantions of each answer.")
                       | llama
                       | StrOutputParser()
             )
@@ -41,7 +41,7 @@ def download_response_as_pdf(bot_response):
     st.download_button(
         label="Download as file",
         data=bot_response,
-        file_name="chatbot_response.txt",
+        file_name="Ans_response.txt",
         #mime="application/pdf"
     )
 
@@ -56,3 +56,7 @@ if st.button("submit"):
      
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
      download_response_as_pdf(bot_response)
+
+for message in st.session_state.messages:
+    if message["role"] == "assistant":
+        st.write(f"bot: {message['content']}")
