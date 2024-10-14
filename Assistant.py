@@ -95,7 +95,7 @@ import pdfplumber
 # Set up the LangChain model
 
 
-qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated questions 'or' similar conceptual questions with their concept from the {base_response}. Also, If any questions are repeated then state their repetitions.")
+qchain= ( ChatPromptTemplate.from_template("Create and Provide a list of the repeated questions 'or' similar conceptual questions with their concept from the {base_response}. Also, If any questions are repeated then state their repetitions.")
                       | llama
                       | StrOutputParser()
                       #| {"q_response": RunnablePassthrough()}
@@ -245,7 +245,7 @@ if st.button("submit"):
      message = st.chat_message("assistant")
      #message.write(cbt_chain.invoke(user_input))
      #st.session_state.messages.append({"role": "user", "content":})
-     bot_response = generate_response(res)
+     bot_response = demchainq.invoke(res)
      
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
      download_response_as_pdf(bot_response)
