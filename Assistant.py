@@ -101,7 +101,7 @@ qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated quest
                       #| {"q_response": RunnablePassthrough()}
                       
             )
-achain= ( ChatPromptTemplate.from_template("Provide responses for all these questions with detail explanations {base_response}.")
+achain= ( ChatPromptTemplate.from_template("Provide responses for all the given questions with detail explanations by understang the concepts {base_response}.")
                       | llama
                       | StrOutputParser()
             )
@@ -135,7 +135,7 @@ mainchain = (
             | responderchain
             )
 demchaina = (
-     qchain
+     basechain
      | achain
 )
 demchainq = (
@@ -207,7 +207,7 @@ def generate_response(res):
         case "Question":
             return demchainq.invoke(res)
         case "ans":
-            return achain.invoke(res)
+            return demchaina.invoke(res)
      
 if "messages" not in st.session_state:
     st.session_state.messages = []
