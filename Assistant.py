@@ -209,10 +209,10 @@ def generate_response(res):
         case "ans":
             return demchaina.invoke(res)
 
-def download_response_as_pdf(response):
+def download_response_as_pdf(bot_response):
     st.download_button(
         label="Download PDF",
-        data=response.encode("utf-8"),
+        data=bot_response.encode("utf-8"),
         file_name="chatbot_response.pdf",
         mime="application/pdf"
     )
