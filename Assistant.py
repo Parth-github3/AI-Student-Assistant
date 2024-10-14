@@ -229,7 +229,7 @@ def yo():
         return extracted_text
       
 res= yo()
-ext = res = ' '.join(res)
+ext = ' '.join(res)
 
 if st.button("submit"):
      message = st.chat_message("assistant")
