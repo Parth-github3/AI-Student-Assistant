@@ -208,6 +208,14 @@ def generate_response(res):
             return demchainq.invoke(res)
         case "ans":
             return demchaina.invoke(res)
+
+def download_response_as_pdf(response):
+    st.download_button(
+        label="Download PDF",
+        data=response.encode("utf-8"),
+        file_name="chatbot_response.pdf",
+        mime="application/pdf"
+    )
      
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -247,6 +255,7 @@ if st.button("submit"):
      bot_response = generate_response(res)
      
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
+     download_response_as_pdf(bot_response)
 
 # getting User input
 # userinput = st.chat_input("Say something")
