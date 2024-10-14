@@ -207,7 +207,7 @@ def generate_response(res):
         case "Question":
             return demchainq.invoke(res)
         case "ans":
-            return demchaina.invoke(res)
+            return achain.invoke(res)
      
 if "messages" not in st.session_state:
     st.session_state.messages = []
