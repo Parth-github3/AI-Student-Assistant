@@ -105,7 +105,7 @@ achain= ( ChatPromptTemplate.from_template("You are an intelligent ai which gene
                       | llama
                       | StrOutputParser()
             )
-basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Analyzize the text {res} and find questions from the text according to their concept.")
+basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Your task is to Analyzize the question papers {res} and find all the questions from each question paper according to their concept.")
                       | llama
                       | StrOutputParser()
                       |{"base_response": RunnablePassthrough()}
