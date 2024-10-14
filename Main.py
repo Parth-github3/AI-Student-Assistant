@@ -17,9 +17,9 @@ pages = {
 }
 
 if st.button("Que"):
-    st.switch_page("Assistant.py")
+    st.switch_page("pages/Que.py")
 if st.button("Ans"):
-    st.switch_page("pages/Answer.py")
+    st.switch_page("pages/Ans.py")
     st.session_state.clear()
 
 pg = st.navigation(pages)
