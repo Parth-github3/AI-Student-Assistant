@@ -211,7 +211,7 @@ def generate_response(res):
 
 def download_response_as_pdf(bot_response):
     st.download_button(
-        label="Download PDF",
+        label="Download as file",
         data=bot_response,
         file_name="chatbot_response.txt",
         #mime="application/pdf"
@@ -276,4 +276,6 @@ for message in st.session_state.messages:
         st.write(f"bot: {message['content']}")
 
 
+pg = st.navigation([st.Page("Answer.py")])
+pg.run()
 
