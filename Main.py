@@ -27,6 +27,6 @@ def info(pages):
         case "Answer":
             ainfo = "Enter text ile"
             return ainfo
-st.sidebar.markdown(info())
+st.sidebar.markdown(info(pages=pages))
 pg = st.navigation(pages)
 pg.run()
