@@ -13,7 +13,7 @@ llama = ChatGroq(
     temperature=0.0
 )
 
-achain= ( ChatPromptTemplate.from_template("You are an intelligent ai made for assisting students for completing their assingnments. You are bound to answer every question provided in this list {que}")
+achain= ( ChatPromptTemplate.from_template("You are an intelligent ai made for assisting students for completing their assingnments. Generate  answers for every question provided in this list {que} of minimum 500 words.")
                       | llama
                       | StrOutputParser()
             )
