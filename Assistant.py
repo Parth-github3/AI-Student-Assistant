@@ -208,13 +208,14 @@ uploaded_files = st.file_uploader(
 for uploaded_file in uploaded_files:
     st.write("filename:", uploaded_file.name)
 
-for file in uploaded_files:
-            text = ""
-            with pdfplumber.open(file) as pdf:
+for uploaded_file in uploaded_files:
+            
+            with pdfplumber.open(uploaded_file) as pdf:
                 # Extract the text from the PDF
-                
-                for page in pdf.pages:
-                    text += page.extract_text()
+                text = ""
+                for uploaded_file in uploaded_files:
+                    for page in pdf.pages:
+                        text += page.extract_text()
 
 
 
