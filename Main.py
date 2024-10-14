@@ -7,7 +7,7 @@ pages = {
         
     ],
     "Ans": [
-        st.Page("Answer.py", title="Learn about us"),
+        st.Page("Answer.py", title="ans"),
 
     ],
 }

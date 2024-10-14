@@ -101,10 +101,6 @@ qchain= ( ChatPromptTemplate.from_template("Provide a list of the repeated quest
                       #| {"q_response": RunnablePassthrough()}
                       
             )
-achain= ( ChatPromptTemplate.from_template("Provide responses for all the given questions with detail explanations by understang the concepts {base_response}. You shall continue until you finish every concept.")
-                      | llama
-                      | StrOutputParser()
-            )
 basechain = ( ChatPromptTemplate.from_template("you are a expert analyst. Your task is to Analyzize these question papers {res} and find all the questions from each question paper according to their concept.")
                       | llama
                       | StrOutputParser()
@@ -129,15 +125,12 @@ mainchain = (
             |{
                 "original_response": itemgetter("base_response"),
                 "results_1": qchain,
-                "results_2": achain,
+                #"results_2": achain,
                 
             }
             | responderchain
             )
-demchaina = (
-     basechain
-     | achain
-)
+
 demchainq = (
      basechain
      | qchain
@@ -207,7 +200,7 @@ def generate_response(res):
         case "Question":
             return demchainq.invoke(res)
         case "ans":
-            return demchaina.invoke(res)
+            return None
 
 def download_response_as_pdf(bot_response):
     st.download_button(
