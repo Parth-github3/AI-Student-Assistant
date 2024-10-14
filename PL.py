@@ -13,7 +13,7 @@ llama = ChatGroq(
     temperature=0.0
 )
 
-cchain= ( ChatPromptTemplate.from_template("Create a hierarchal plan for studying these concepts {concepts} and represent it with flow chart. Also, explain the plan. ")
+cchain= ( ChatPromptTemplate.from_template("you are a expert analyst. your task is to Create a hierarchal plan for studying these concepts {concepts} and represent it with flow chart. Also, explain the your created plan.")
                       | llama
                       | StrOutputParser()
             )
