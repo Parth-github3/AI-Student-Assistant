@@ -11,7 +11,7 @@ This app will make your exam preparations smooth as butter!\n
 st.markdown("**How to use?**")
 with st.expander("Instructions to follow..."):
     st.markdown("""Open the **Question** page -> Upload pyq papers (only in pdf format) -> Download the ***Question_response*** text file.\n 
-                You can you this file for both Answer page and Concept-Learning Plan for getting responses.
+                    You can you this file for both Answer page and Concept-Learning Plan for getting responses.\n
                 """)
 with st.expander("About Question..."):
     st.markdown("""
