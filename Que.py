@@ -54,7 +54,7 @@ if "messages" not in st.session_state:
 uploaded_files = st.file_uploader(
         "Upload your PYQ papers below. (Only .pdf is allowed)", accept_multiple_files=True
     )
-st.write("If your pdf file is created with images of question paper then use OCR tool first to convert it into readable pdf. Go to this link for conversion:  ")
+st.write("If your pdf file is created with images of question paper then use OCR tool first to convert it into readable pdf. Go to this link for conversion: https://www.ilovepdf.com/ocr-pdf ")
 # Function to extract text from files
 def extract():
     
