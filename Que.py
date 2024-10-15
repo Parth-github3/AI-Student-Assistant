@@ -54,7 +54,7 @@ if "messages" not in st.session_state:
 uploaded_files = st.file_uploader(
         "Upload your PYQ papers below. (Only .pdf is allowed)", accept_multiple_files=True
     )
-
+st.write("If your pdf has images in it then use OCR tool first ")
 # Function to extract text from files
 def extract():
     
