@@ -36,7 +36,7 @@ mainchainq = (
 )
 
 # Load Groq compiled LLaMA model (replace with your actual model path)
-@st.cache_resource
+#@st.cache_resource
 
 
 # Function to download response
