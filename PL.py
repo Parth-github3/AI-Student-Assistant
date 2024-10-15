@@ -29,7 +29,7 @@ conchain= (
 
 # Getting user input
 uploaded_files = st.file_uploader(
-        "Choose a file", accept_multiple_files=True
+        "Note: Only upload the Question_response.txt file", accept_multiple_files=True
     )
 
 # Function to extract text from files
