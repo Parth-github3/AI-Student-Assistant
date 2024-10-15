@@ -1,5 +1,6 @@
 import streamlit as st
 
+# Introduction Text
 st.markdown("""
 ### Hello students! Hope you find this app when your exam is near.\n
 This app will make your exam preparations smooth as butter!\n
@@ -8,6 +9,8 @@ This app will make your exam preparations smooth as butter!\n
             2. Answer
             3. Concept-Learning Plan
 """)
+
+# How to use section
 st.markdown("**How to use?**")
 
 with st.expander("Instructions to follow..."):
@@ -17,6 +20,7 @@ You can you this file for both Answer page and Concept-Learning Plan for getting
                 """)
     
 
+# Description
 st.markdown("**Description about app's functions**")
 
 with st.expander("About Question..."):

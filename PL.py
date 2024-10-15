@@ -1,18 +1,18 @@
 #Requirements
 from langchain_groq import ChatGroq
 import streamlit as st
-from langchain_core.prompts import ChatPromptTemplate ,PromptTemplate
-from operator import itemgetter
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
-from io import StringIO
 
+#LLM Model
 llama = ChatGroq(
     model="LLaMA3-70B-8192",
     groq_api_key='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',
     temperature=0.0
 )
 
+# Setting up chains
 cchain= ( ChatPromptTemplate.from_template("you are a expert analyst. your task is to Create a hierarchal plan for studying these concepts {concepts} and represent it with flow chart. Also, explain the your created plan. Guide and encourage students to follow your plan.")
                       | llama
                       | StrOutputParser()
@@ -27,9 +27,12 @@ conchain= (
     | cchain
 )
 
+# Getting user input
 uploaded_files = st.file_uploader(
         "Choose a file", accept_multiple_files=True
     )
+
+# Function to extract text from files
 def concept():
     decoded_text = []
     for file in uploaded_files:
@@ -38,6 +41,7 @@ def concept():
     return decoded_text
 txt = concept()
 
+# Function to download response
 def download_response_as_pdf(bot_response):
     st.download_button(
         label="Download as file",
@@ -51,10 +55,7 @@ if "messages" not in st.session_state:
 
 if st.button("submit"):
      message = st.chat_message("assistant")
-     #message.write(cbt_chain.invoke(user_input))
-     #st.session_state.messages.append({"role": "user", "content":})
      bot_response = conchain.invoke(txt)
-     
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
      download_response_as_pdf(bot_response)
 
