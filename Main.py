@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("AI Exam Prep by PARTH")
+st.title("AI EXAM PREPPER by PARTH")
 
 pages = {
     "Home": [
