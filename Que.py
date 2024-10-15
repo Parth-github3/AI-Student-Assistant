@@ -52,7 +52,7 @@ if "messages" not in st.session_state:
 
 # Getting user input
 uploaded_files = st.file_uploader(
-        "Choose a file", accept_multiple_files=True
+        "Upload your PYQ papers below. (Only .pdf is allowed)", accept_multiple_files=True
     )
 
 # Function to extract text from files
