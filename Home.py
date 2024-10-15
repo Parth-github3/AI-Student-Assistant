@@ -8,6 +8,7 @@ This app will make your exam preparations smooth as butter!\n
             2. Answer
             3. Concept-Learning Plan
 """)
+st.header("How to use?")
 with st.expander("About Question..."):
     st.markdown("""
     "Question" is a place where you upload your Past Year Question papers and get your imp questions in seconds.\n
