@@ -9,8 +9,10 @@ This app will make your exam preparations smooth as butter!\n
             3. Concept-Learning Plan
 """)
 st.markdown("**How to use?**")
-with st.expander("About Question..."):
-    st.markdown("Open the Question page -> Upload pyq papers -> Download the ***Question_response*** text file.\n You can you this file for both Answer page and Concept-Learning Plan for getting responses.")
+with st.expander("Instructions to follow..."):
+    st.markdown("""Open the **Question** page -> Upload pyq papers (only in pdf format) -> Download the ***Question_response*** text file.\n 
+                You can you this file for both Answer page and Concept-Learning Plan for getting responses.
+                """)
 with st.expander("About Question..."):
     st.markdown("""
     "Question" is a place where you upload your Past Year Question papers and get your imp questions in seconds.\n
