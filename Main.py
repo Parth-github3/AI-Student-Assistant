@@ -4,7 +4,7 @@ st.title("AI Exam Prep by PARTH")
 
 pages = {
     "Home": [
-        st.Page("Home.py", title="infoo."),
+        st.Page("Home.py", title="Welcome!"),
     ],
     "Question": [
         st.Page("Que.py", title="Upload your PYQ papers."),
