@@ -53,7 +53,7 @@ def download_response_as_pdf(bot_response):
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-if st.button("submit"):
+if st.button("Submit"):
      message = st.chat_message("assistant")
      bot_response = conchain.invoke(txt)
      st.session_state.messages.append({"role": "assistant", "content": bot_response})
