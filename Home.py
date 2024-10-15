@@ -33,16 +33,16 @@ with st.expander("About Question..."):
 
 with st.expander("About Answer..."):
     st.markdown("""
-In **Answer** page, you will get brief and informative answer for any questions provided. 
-Input: The ***Question_response*** text file from the **Question** page.
-Task: Generation of answers with conceptual understanding.
+In **Answer** page, you will get brief and informative answer for any questions provided. \n
+Input: The ***Question_response*** text file from the **Question** page.\n
+Task: Generation of answers with conceptual understanding.\n
 Output: Answer text file to download.                          
 """)
     
 with st.expander("About Concept-Learning Plan..."):
     st.markdown("""
-In **Concept-Learning Plan** page, you will get a guided study plan to kickstart your studying.
-Input: The ***Question_response*** text file from the **Question** page.
-Task: Generation of a Study plan according to your imp concepts covered in the exam with a flow chart to visualize it better.
+In **Concept-Learning Plan** page, you will get a guided study plan to kickstart your studying.\n
+Input: The ***Question_response*** text file from the **Question** page.\n
+Task: Generation of a Study plan according to your imp concepts covered in the exam with a flow chart to visualize it better.\n
 Output: Plan text file to download.                                               
 """)
