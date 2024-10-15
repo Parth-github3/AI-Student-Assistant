@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Title
-st.title("AI EXAM PREPPER by PARTH &mdash; :books::magic_wand::sparkles:")
+st.title("AI EXAM PREPPER by PARTH\n &mdash; :books::magic_wand::sparkles:")
 
 # Pages defined Home, Question, Answer, Concept-Learning Plan
 pages = {
